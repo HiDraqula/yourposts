@@ -16,23 +16,17 @@ import {
 } from "@mui/material";
 import HeadStepper from "./HeadStepper";
 import postApis from "../services/post.apis";
+import PostForm from "./PostForm";
+import PostCard from "./PostCard";
 
 export default function AddPost() {
-  let { postId } = useParams();
-
   const [post, setPost] = useState({
     id: null,
     title: "Write Title Here...",
     body: "Write Body Here...",
   });
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     // console.log(data);
@@ -46,45 +40,13 @@ export default function AddPost() {
       <HeadStepper>
         <h2>Add</h2>
       </HeadStepper>
-      {post?.id && (
-        <Card className="px1">
-          <h3 className="flex jc-sb">
-            <span onClick={onSubmit}>
-              {post.id}. {post.title}
-            </span>
-          </h3>
-          <p>{post.body}</p>
-        </Card>
-      )}
+      <PostCard post={post} skeleton={!!post.id} />
       {/* <Paper className="p1 my1"> */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="my2 gap2 flex fd-col ai-stretch"
-      >
-        <TextField
-          id="title"
-          label="Title"
-          variant="standard"
-          fullWidth
-          //   defaultValue={post.title}
-          {...register("title")}
-        />
-        <TextField
-          id="body"
-          label="Body"
-          variant="standard"
-          fullWidth
-          multiline
-          rows={4}
-          //   defaultValue={post.body}
-          {...register("body")}
-        />
-        {/* {errors.exampleRequired && <span>This field is required</span>} */}
-        <Button type="submit" variant="contained">
-          submit
-        </Button>
-        {/* <input type="submit" /> */}
-      </form>
+      <PostForm
+        register={register}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      />
       {/* </Paper> */}
     </section>
   );

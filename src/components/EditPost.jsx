@@ -17,6 +17,8 @@ import {
 } from "@mui/material";
 import HeadStepper from "./HeadStepper";
 import postApis from "../services/post.apis";
+import PostForm from "./PostForm";
+import PostCard from "./PostCard";
 
 export default function EditPost() {
   let { postId } = useParams();
@@ -74,52 +76,13 @@ export default function EditPost() {
           Edit <span className="c-grey">: {postId}</span>
         </h2>
       </HeadStepper>
-      {post?.id ? (
-        <Card className="px1">
-          <h3 className="flex jc-sb">
-            <span onClick={onSubmit}>
-              {post.id}. {post.title}
-            </span>
-          </h3>
-          <p>{post.body}</p>
-        </Card>
-      ) : (
-        <Skeleton variant="rounded" height={120} />
-        // <div className="flex my2">
-        //   <CircularProgress />
-        // </div>
-      )}
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="my2 gap2 flex fd-col ai-stretch"
-      >
-        {/* <input defaultValue="test" {...register("title")} />
-        <input {...register("body")} /> */}
-        <TextField
-          id="title"
-          label="Title"
-          variant="standard"
-          fullWidth
-          defaultValue=""
-          {...register("title")}
-        />
-        <TextField
-          id="body"
-          label="Body"
-          variant="standard"
-          fullWidth
-          multiline
-          rows={4}
-          defaultValue=""
-          {...register("body")}
-        />
-        {/* {errors.exampleRequired && <span>This field is required</span>} */}
-        <Button type="submit" variant="contained">
-          submit
-        </Button>
-        {/* <input type="submit" /> */}
-      </form>
+      <PostCard post={post} />
+      <PostForm
+        register={register}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      />
     </section>
   );
 }
