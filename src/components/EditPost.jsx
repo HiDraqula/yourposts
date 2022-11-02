@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  clearPost,
-  getPost,
-  postActions,
-  updatePost,
-} from "../features/post/post.reducer";
+import { postActions } from "../features/post/post.reducer";
 import { useForm } from "react-hook-form";
-import {
-  Button,
-  Card,
-  CircularProgress,
-  Skeleton,
-  TextField,
-} from "@mui/material";
+
 import HeadStepper from "./HeadStepper";
 import postApis from "../services/post.apis";
 import PostForm from "./PostForm";
@@ -62,13 +51,7 @@ export default function EditPost() {
     setValue("title", post.title);
     setValue("body", post.body);
   };
-  //   if (!post.title) {
-  //     return (
-  //       <div className="flex" style={{ minHeight: "80vh" }}>
-  //         <CircularProgress />
-  //       </div>
-  //     );
-  //   }
+
   return (
     <section className="editpost">
       <HeadStepper>

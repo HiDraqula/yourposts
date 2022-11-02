@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-  createPost,
-  getPost,
-  postActions,
-} from "../features/post/post.reducer";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { postActions } from "../features/post/post.reducer";
 import { useForm } from "react-hook-form";
-import {
-  Button,
-  Card,
-  CircularProgress,
-  Paper,
-  TextField,
-} from "@mui/material";
+
 import HeadStepper from "./HeadStepper";
 import postApis from "../services/post.apis";
 import PostForm from "./PostForm";

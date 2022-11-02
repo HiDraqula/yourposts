@@ -1,14 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Api from "../../Api";
 import postApis from "../../services/post.apis";
 // import env from "../../env";
 
 export const getPosts = createAsyncThunk("post/getPosts", postApis.getPosts);
-// export const getPosts = createAsyncThunk("post/getPosts", async () => {
-//   const res = await Api.get("/posts");
-//   console.log({ data: res.data });
-//   return res.data;
-// });
 export const getPost = createAsyncThunk("post/getPost", postApis.getPost);
 // export const createPost = createAsyncThunk(
 //   "post/createPost",
